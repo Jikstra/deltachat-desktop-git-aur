@@ -1,7 +1,7 @@
 # Maintainer: Jikstra <jikstra@disroot.org>
 pkgname=deltachat-desktop-git
-pkgver=20181214
-pkgrel=2
+pkgver=v0.90.1.r20.gb24fb2b
+pkgrel=1
 pkgdesc="A privacy oriented chat application built on e-mail"
 arch=("any")
 url="https://github.com/deltachat/deltachat-desktop"
@@ -19,6 +19,14 @@ sha256sums=(
     "5772cf1942bd4fb1ecddfff4a4ad4783140960b1d109861908567fbd0fc3a553"
     "eba972f8f3920d3328805373efac345e6e112ed9cf0f5d2ee72a6b6d9089fe65"
 )
+
+
+pkgver() {
+    cd "$srcdir/${pkgname}"
+
+    git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
 
 prepare() {
     cd "$srcdir/${pkgname}"
